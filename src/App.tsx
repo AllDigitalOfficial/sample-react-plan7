@@ -1,0 +1,74 @@
+import React, { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  ContractData,
+  HeroSection,
+  Copyright,
+  Deposit,
+  Levels,
+  Navbars,
+  Referral,
+  ReferralLinkData,
+} from "./components";
+
+const App: React.FC = () => {
+  // Change background color when the component mounts
+  useEffect(() => {
+    // Set document title
+    document.title = import.meta.env.VITE_APP_TITLE || "BnbOath";
+    
+    // Set favicon
+    const favicon = document.querySelector(
+      "link[rel*='icon']"
+    ) as HTMLLinkElement;
+    if (favicon) {
+      favicon.href = import.meta.env.VITE_APP_FAVICON_ICON || "";
+    }
+
+    // Set the global background color for the entire app
+    const globalBgColor = import.meta.env.VITE_GLOBAL_BG_COLOR || "#121212"; // Default to dark color
+    document.body.style.backgroundColor = globalBgColor; // Apply the background color globally
+  }, []);
+
+  return (
+    <div className="App">
+      <Navbars />
+
+      <div className="container my-4">
+        <HeroSection />
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 col-md-12 mb-4">
+            <ContractData />
+          </div>
+        </div>
+
+        <div className="col-lg-12 col-md-12 mb-4">
+          <Deposit />
+        </div>
+
+        <div className="row">
+          <div className="col-lg-12 col-md-12 mb-4">
+            <ReferralLinkData />
+          </div>
+        </div>
+
+        <div className="col-lg-12 col-md-12 mb-4">
+          <Referral />
+        </div>
+
+        <div className="col-lg-12 col-md-12 mb-4">
+          <Levels />
+        </div>
+      </div>
+
+      <div className="col-lg-12 col-md-12 mb-4">
+        <Copyright />
+      </div>
+    </div>
+  );
+};
+
+export default App;
