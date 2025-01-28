@@ -1,13 +1,13 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 const Navbars = () => {
-  const navbarBgColor = import.meta.env.VITE_APP_NAVBAR_BG_COLOR || "#343a40"; // Default to dark
-  const navbarTextColor = import.meta.env.VITE_APP_NAVBAR_TEXT_COLOR || "#ffffff"; // Default to white
+  // Get environment variable values from the .env file
+  const navbarBgColor = import.meta.env.VITE_APP_NAVBAR_BG_COLOR;
+  const navbarTextColor = import.meta.env.VITE_APP_NAVBAR_TEXT_COLOR;
 
-  const buttonBgColor = import.meta.env.VITE_APP_BUTTON_BG_COLOR || "#007bff"; // Default to blue
-  const buttonTextColor = import.meta.env.VITE_APP_BUTTON_TEXT_COLOR || "#ffffff"; // Default to white
-  const buttonBorderColor =
-    import.meta.env.VITE_APP_BUTTON_BORDER_COLOR || "#007bff"; // Default to blue
+  const buttonBgColor = import.meta.env.VITE_APP_BUTTON_BG_COLOR;
+  const buttonTextColor = import.meta.env.VITE_APP_BUTTON_TEXT_COLOR;
+  const buttonBorderColor = import.meta.env.VITE_APP_BUTTON_BORDER_COLOR;
 
   return (
     <>
@@ -17,10 +17,10 @@ const Navbars = () => {
         expand="lg"
         className="py-3"
         style={{
-          backgroundColor: navbarBgColor,
+          backgroundColor: navbarBgColor,  // Apply the background color from the .env
         }}
       >
-        <Container fluid>
+        <Container>
           {/* Left: Logo */}
           <Navbar.Brand href="#home" className="d-flex align-items-center">
             {/* Replace BnbOath text with an image */}

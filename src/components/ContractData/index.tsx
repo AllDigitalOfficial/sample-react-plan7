@@ -3,9 +3,9 @@ import React from "react";
 const ContractData = () => {
   // Get color values from environment variables
   const contractBalanceColor =
-    import.meta.env.VITE_APP_CONTRACT_BALANCE_COLOR || "#6a11cb"; 
-  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR || "#121212"; 
-  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR || "#ffffff"; 
+    import.meta.env.VITE_APP_CONTRACT_BALANCE_COLOR  
+  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR  
+  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR 
   const gradientText = `linear-gradient(to right, #6a11cb, #2575fc)`;
 
   return (

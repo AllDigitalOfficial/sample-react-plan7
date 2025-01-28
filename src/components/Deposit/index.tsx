@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Deposit = () => {
-  // Environment variable values (or static defaults here)
-  const depositBgColor = "#121212"; // Dark theme background
-  const cardBgColor = "#1e1e2d"; // Darker card color
-  const textColor = "#ffffff"; // White text for contrast
-  const buttonColor = "#007bff"; // Default button color
-  const gradientText = `linear-gradient(to right, #6a11cb, #2575fc)`;
-  const minDeposit = 0.05;
-  const maxDeposit = 1000;
-  const perDayIncome = 0.0;
-  const percentRate = 4; // Default percentage rate
-  const totalIncome = 0.0;
+  // Fetch environment variable values
+  const depositBgColor = import.meta.env.VITE_DEPOSIT_BG_COLOR 
+  const textColor = import.meta.env.VITE_DEPOSIT_TEXT_COLOR 
+  const cardBgColor = import.meta.env.VITE_CARD_BG_COLOR 
+  const buttonColor = import.meta.env.VITE_BUTTON_COLOR 
+  const buttonHoverColor = import.meta.env.VITE_BUTTON_HOVER_COLOR 
+  const gradientTextStartColor = import.meta.env.VITE_GRADIENT_TEXT_START_COLOR 
+  const gradientTextEndColor = import.meta.env.VITE_GRADIENT_TEXT_END_COLOR 
+
+  const minDeposit = parseFloat(import.meta.env.VITE_MIN_DEPOSIT) 
+  const maxDeposit = parseFloat(import.meta.env.VITE_MAX_DEPOSIT) 
+  const depositIncome = parseFloat(import.meta.env.VITE_DEPOSIT_INCOME) 
+  const percentRate = parseFloat(import.meta.env.VITE_PERCENT_RATE) 
+  const totalIncome = parseFloat(import.meta.env.VITE_TOTAL_INCOME) 
+
+  // State management for deposit, perDayIncome, and totalIncome
+  const [depositAmount, setDepositAmount] = useState<string>(""); // Start with an empty string
+  const [perDayIncome, setPerDayIncome] = useState<number>(depositIncome);
+  const [totalIncomeState, setTotalIncomeState] = useState<number>(totalIncome);
+
+  // Function to handle deposit input change with event typed correctly
+  const handleDepositChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value) || 0;
+    setDepositAmount(event.target.value); // Update the input value as a string
+
+    // Ensure deposit is within the allowed range
+    if (value >= minDeposit && value <= maxDeposit) {
+      const dailyIncome = (value * percentRate) / 100; // Calculate per day income
+      setPerDayIncome(dailyIncome);
+      setTotalIncomeState(dailyIncome * 30); // Total income for 30 days
+    } else {
+      setPerDayIncome(0);
+      setTotalIncomeState(0);
+    }
+  };
 
   return (
     <div
@@ -37,18 +61,18 @@ const Deposit = () => {
               }}
             >
               <div className="d-flex flex-column mb-3">
-                {/* Left side: Labels */}
+                {/* Labels */}
                 <div className="d-flex justify-content-between mb-3">
                   <h4 className="fw-bold" style={{ fontSize: "1.25rem" }}>Per Day:</h4>
                   <h4 className="fw-bold" style={{ fontSize: "1.25rem" }}>Percent Rate:</h4>
                   <h4 className="fw-bold" style={{ fontSize: "1.25rem" }}>Total Income:</h4>
                 </div>
 
-                {/* Right side: Values */}
+                {/* Values */}
                 <div className="d-flex justify-content-between">
-                  <p id="perDayIncome" className="fs-4 fw-bold">{perDayIncome} BNB</p>
+                  <p id="perDayIncome" className="fs-4 fw-bold">{perDayIncome.toFixed(3)} BNB</p>
                   <p className="fs-5 fw-bold">{percentRate}% per day</p>
-                  <p id="totalIncome" className="fs-4 fw-bold">{totalIncome} BNB</p>
+                  <p id="totalIncome" className="fs-4 fw-bold">{totalIncomeState.toFixed(3)} BNB</p>
                 </div>
               </div>
 
@@ -72,7 +96,7 @@ const Deposit = () => {
               <h3
                 className="fw-bold mb-4"
                 style={{
-                  backgroundImage: gradientText,
+                  backgroundImage: `linear-gradient(to right, ${gradientTextStartColor}, ${gradientTextEndColor})`,
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   color: "transparent",
@@ -94,6 +118,11 @@ const Deposit = () => {
                     border: "none",
                     fontSize: "1.125rem", // Slightly larger font for input
                   }}
+                  value={depositAmount}
+                  onChange={handleDepositChange}
+                  min={minDeposit}
+                  max={maxDeposit}
+                  step="0.01" // Set decimal precision
                 />
               </div>
 
@@ -129,7 +158,7 @@ const Deposit = () => {
           }
 
           .btn:hover {
-            background-color: #0056b3; /* Darker shade on hover */
+            background-color: ${buttonHoverColor}; /* Hover color from .env */
             transform: scale(1.05); /* Slightly enlarge the button on hover */
           }
         `}
