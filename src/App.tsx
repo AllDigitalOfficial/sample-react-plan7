@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   ContractData,
   HeroSection,
-  Copyright,
+  Footer,
   Deposit,
   Levels,
   Navbars,
@@ -12,7 +12,7 @@ import {
 } from "./components";
 
 const App: React.FC = () => {
-  // Change background color when the component mounts
+  // Change background color, font, and other settings when the component mounts
   useEffect(() => {
     // Set document title
     document.title = import.meta.env.VITE_APP_TITLE || "BnbOath";
@@ -28,6 +28,10 @@ const App: React.FC = () => {
     // Set the global background color for the entire app
     const globalBgColor = import.meta.env.VITE_GLOBAL_BG_COLOR || "#121212"; // Default to dark color
     document.body.style.backgroundColor = globalBgColor; // Apply the background color globally
+
+    // Set the global font family
+    const fontFamily = import.meta.env.VITE_FONT_FAMILY || "Inter, sans-serif"; // Fallback to "Inter"
+    document.body.style.fontFamily = fontFamily; // Apply font globally
   }, []);
 
   return (
@@ -65,7 +69,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="col-lg-12 col-md-12 mb-4">
-        <Copyright />
+        <Footer />
       </div>
     </div>
   );

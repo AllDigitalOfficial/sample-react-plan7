@@ -21,25 +21,10 @@ const ContractData = () => {
               borderRadius: "15px",
             }}
           >
-            {/* Container for logo and title */}
-            <div className="d-flex flex-column align-items-center">
-              {/* Logo centered above the title */}
-              <img
-                src="/1.png" // Path to the image in the public folder
-                alt="Logo"
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                }}
-              />
-
-              {/* Deposit Title */}
-              <h5 className="mt-3" style={{ color: cardTextColor }}>
-                Deposit
-              </h5>
-            </div>
+            {/* Deposit Title */}
+            <h5 className="mt-3" style={{ color: cardTextColor }}>
+              Deposit
+            </h5>
 
             {/* Amount */}
             <p id="total-deposits" className="fs-5 fw-bold text-white">
@@ -58,25 +43,10 @@ const ContractData = () => {
               borderRadius: "15px",
             }}
           >
-            {/* Container for logo and title */}
-            <div className="d-flex flex-column align-items-center">
-              {/* Logo centered above the title */}
-              <img
-                src="/2.png" // Path to the image in the public folder
-                alt="Logo"
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                }}
-              />
-
-              {/* Users Title */}
-              <h5 className="mt-3" style={{ color: cardTextColor }}>
-                Users
-              </h5>
-            </div>
+            {/* Users Title */}
+            <h5 className="mt-3" style={{ color: cardTextColor }}>
+              Users
+            </h5>
 
             {/* Amount */}
             <p id="total-users" className="fs-5 fw-bold text-white">
@@ -95,25 +65,10 @@ const ContractData = () => {
               borderRadius: "15px",
             }}
           >
-            {/* Container for logo and title */}
-            <div className="d-flex flex-column align-items-center">
-              {/* Logo centered above the title */}
-              <img
-                src="/3.png" // Path to the image in the public folder
-                alt="Logo"
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                }}
-              />
-
-              {/* Withdrawn Title */}
-              <h5 className="mt-3" style={{ color: cardTextColor }}>
-                Withdrawn
-              </h5>
-            </div>
+            {/* Withdrawn Title */}
+            <h5 className="mt-3" style={{ color: cardTextColor }}>
+              Withdrawn
+            </h5>
 
             {/* Amount */}
             <p id="withdrawandata2" className="fs-5 fw-bold text-white">
@@ -132,25 +87,10 @@ const ContractData = () => {
               borderRadius: "15px",
             }}
           >
-            {/* Container for logo and title */}
-            <div className="d-flex flex-column align-items-center">
-              {/* Logo centered above the title */}
-              <img
-                src="/4.png" // Path to the image in the public folder
-                alt="Logo"
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                }}
-              />
-
-              {/* Ref Rewards Title */}
-              <h5 className="mt-3" style={{ color: cardTextColor }}>
-                Ref Rewards
-              </h5>
-            </div>
+            {/* Ref Rewards Title */}
+            <h5 className="mt-3" style={{ color: cardTextColor }}>
+              Ref Rewards
+            </h5>
 
             {/* Amount */}
             <p id="ref-rewards" className="fs-5 fw-bold text-white">

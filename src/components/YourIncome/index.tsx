@@ -1,12 +1,12 @@
 const ReferralLinkData = () => {
   // Get environment variable values
-  const bgColor = import.meta.env.VITE_APP_REFERRAL_LINK_BG_COLOR 
-  const textColor = import.meta.env.VITE_APP_REFERRAL_LINK_TEXT_COLOR 
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR 
-  const totalDepositColor = import.meta.env.VITE_APP_TOTAL_DEPOSIT_COLOR 
-  const totalWithdrawnColor = import.meta.env.VITE_APP_TOTAL_WITHDRAWN_COLOR 
-  const returnsColor = import.meta.env.VITE_APP_RETURNS_COLOR
-  const interestRateColor = import.meta.env.VITE_APP_INTEREST_RATE_COLOR 
+  const bgColor = import.meta.env.VITE_APP_REFERRAL_LINK_BG_COLOR;
+  const textColor = import.meta.env.VITE_APP_REFERRAL_LINK_TEXT_COLOR;
+  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR;
+  const totalDepositColor = import.meta.env.VITE_APP_TOTAL_DEPOSIT_COLOR;
+  const totalWithdrawnColor = import.meta.env.VITE_APP_TOTAL_WITHDRAWN_COLOR;
+  const returnsColor = import.meta.env.VITE_APP_RETURNS_COLOR;
+  const interestRateColor = import.meta.env.VITE_APP_INTEREST_RATE_COLOR;
 
   return (
     <div className="expart-team-area py-5" style={{ backgroundColor: bgColor }}>
@@ -20,13 +20,13 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4 d-flex flex-column"
                   style={{
-                    backgroundColor: "rgb(30, 30, 45)",
-                    color: "#ffffff",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "15px",
                     boxShadow: "rgba(0, 0, 0, 0.3) 0px 4px 15px",
                   }}
                 >
-                  <h3 style={{ color: "#ffffff" }}>Referral Amount Available</h3>
+                  <h3>Referral Amount Available</h3>
                   <p className="fs-4 fw-bold" style={{ color: "#ffc107" }}>
                     0.000 <span className="text-white">BNB</span>
                   </p>
@@ -38,13 +38,13 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4 d-flex flex-column"
                   style={{
-                    backgroundColor: "rgb(30, 30, 45)",
-                    color: "#ffffff",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "15px",
                     boxShadow: "rgba(0, 0, 0, 0.3) 0px 4px 15px",
                   }}
                 >
-                  <h3 style={{ color: "#ffffff" }}>User Dividends Available</h3>
+                  <h3>User Dividends Available</h3>
                   <p className="fs-4 fw-bold" style={{ color: "#17a2b8" }}>
                     0.000 <span className="text-white">BNB</span>
                   </p>
@@ -56,14 +56,14 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4 d-flex flex-column"
                   style={{
-                    backgroundColor: "rgb(30, 30, 45)",
-                    color: "#ffffff",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "15px",
                     boxShadow: "rgba(0, 0, 0, 0.3) 0px 4px 15px",
                   }}
                 >
-                  <h3 style={{ color: "#ffffff" }}>Total Withdrawable Balance</h3>
-                  <p className="fs-4 fw-bold" style={{ color: "#28a745" }}>
+                  <h3>Total Withdrawable Balance</h3>
+                  <p className="fs-4 fw-bold" style={{ color: " #28a745" }}>
                     0.000 <span className="text-white">BNB</span>
                   </p>
                   <button
@@ -93,10 +93,10 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4"
                   style={{
-                    backgroundColor: "#f8f9fa",
-                    color: "#000000",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "12px",
-                    border: `2px solid ${totalDepositColor}`,
+                    border: "1px solid #2D4C70",
                   }}
                 >
                   <h4 style={{ color: totalDepositColor }}>User Deposit</h4>
@@ -111,10 +111,10 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4"
                   style={{
-                    backgroundColor: "#f8f9fa",
-                    color: "#000000",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "12px",
-                    border: `2px solid ${returnsColor}`,
+                    border: "1px solid #2D4C70",
                   }}
                 >
                   <h4 style={{ color: returnsColor }}>User Returns</h4>
@@ -129,10 +129,10 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4"
                   style={{
-                    backgroundColor: "#f8f9fa",
-                    color: "#000000",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "12px",
-                    border: `2px solid ${totalWithdrawnColor}`,
+                    border: "1px solid #2D4C70",
                   }}
                 >
                   <h4 style={{ color: totalWithdrawnColor }}>User Total Withdrawn</h4>
@@ -147,10 +147,10 @@ const ReferralLinkData = () => {
                 <div
                   className="card shadow-lg p-4"
                   style={{
-                    backgroundColor: "#f8f9fa",
-                    color: "#000000",
+                    backgroundColor: "#192337",
+                    color: textColor,
                     borderRadius: "12px",
-                    border: `2px solid ${interestRateColor}`,
+                    border: "1px solid #2D4C70",
                   }}
                 >
                   <h4 style={{ color: interestRateColor }}>Percent Rate</h4>
