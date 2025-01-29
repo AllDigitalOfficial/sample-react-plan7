@@ -3,36 +3,12 @@ import React from "react";
 const ContractData = () => {
   // Get color values from environment variables
   const contractBalanceColor =
-    import.meta.env.VITE_APP_CONTRACT_BALANCE_COLOR  
-  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR  
-  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR 
-  const gradientText = `linear-gradient(to right, #6a11cb, #2575fc)`;
+    import.meta.env.VITE_APP_CONTRACT_BALANCE_COLOR;
+  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR;
+  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR;
 
   return (
     <div className="container py-5">
-      {/* Contract Balance Section */}
-      <div className="text-center mb-5">
-        <h2
-          className="fw-bold mb-3"
-          style={{
-            backgroundImage: gradientText,
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            color: "transparent",
-          }}
-        >
-          Contract Balance
-        </h2>
-        <span
-          className="fs-2 fw-bold"
-          style={{
-            color: contractBalanceColor,
-          }}
-        >
-          0.000 BNB
-        </span>
-      </div>
-
       {/* Statistic Cards */}
       <div className="row g-4">
         {/* Deposit Card */}
@@ -55,7 +31,7 @@ const ContractData = () => {
                   width: "50px",
                   height: "50px",
                   objectFit: "contain",
-                  marginBottom: "10px", 
+                  marginBottom: "10px",
                 }}
               />
 
@@ -92,7 +68,7 @@ const ContractData = () => {
                   width: "50px",
                   height: "50px",
                   objectFit: "contain",
-                  marginBottom: "10px", 
+                  marginBottom: "10px",
                 }}
               />
 
@@ -129,7 +105,7 @@ const ContractData = () => {
                   width: "50px",
                   height: "50px",
                   objectFit: "contain",
-                  marginBottom: "10px", 
+                  marginBottom: "10px",
                 }}
               />
 
@@ -166,7 +142,7 @@ const ContractData = () => {
                   width: "50px",
                   height: "50px",
                   objectFit: "contain",
-                  marginBottom: "10px", 
+                  marginBottom: "10px",
                 }}
               />
 

@@ -12,8 +12,7 @@ const Navbars = () => {
   return (
     <>
       <Navbar
-        bg="dark"
-        variant="dark"
+      
         expand="lg"
         className="py-3"
         style={{
@@ -27,8 +26,7 @@ const Navbars = () => {
             <img
               alt="Logo"
               src="/bnboath.png"  // Reference the image stored in the public folder
-              className="img-fluid"
-              style={{ maxWidth: "50%", height: "auto" }}
+              className="img-fluid logo" // Added the 'logo' class for custom styling
             />
           </Navbar.Brand>
 
@@ -47,7 +45,7 @@ const Navbars = () => {
                 transition: "all 0.3s ease", // Smooth transition for hover effects
               }}
               onClick={() =>
-                window.open(import.meta.env.VITE_SMART_CONTRACT || "", "_blank")
+                window.open(import.meta.env.VITE_APP_SMART_CONTRACT || "", "_blank")
               }
             >
               Smart Contract
@@ -64,6 +62,7 @@ const Navbars = () => {
                 fontSize: "1rem", // Adjust font size
                 transition: "all 0.3s ease", // Smooth transition for hover effects
               }}
+              
             >
               Connect Wallet
             </Button>
@@ -71,13 +70,17 @@ const Navbars = () => {
         </Container>
       </Navbar>
 
-      {/* Internal CSS for Button Responsiveness */}
+      {/* Internal CSS for Button and Logo Responsiveness */}
       <style>{`
         /* For extra large screens */
         @media (min-width: 1200px) {
           .btn-responsive {
-            font-size: 1rem;
+            font-size: 1.1rem;
             padding: 12px 30px;
+          }
+          
+          .logo {
+            max-width: 50%;  /* Logo width for extra large screens */
           }
         }
 
@@ -85,7 +88,11 @@ const Navbars = () => {
         @media (max-width: 992px) {
           .btn-responsive {
             font-size: 1rem;
-            padding: 10px 20px;
+            padding: 10px 25px;
+          }
+
+          .logo {
+            max-width: 60%;  /* Logo width for medium screens */
           }
         }
 
@@ -94,6 +101,10 @@ const Navbars = () => {
           .btn-responsive {
             font-size: 0.9rem;
             padding: 8px 18px;
+          }
+
+          .logo {
+            max-width: 70%;  /* Logo width for smaller screens */
           }
         }
 

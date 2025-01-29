@@ -4,41 +4,82 @@ const HeroSection = () => {
   // Get environment variable values
   const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR;
   const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR;
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR ;
-  const buttonOutlineColor = import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR; 
+  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR;
+  const buttonOutlineColor = import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR;
   const presentationLink = import.meta.env.VITE_APP_PRESENTATION_LINK;
   const depositLink = import.meta.env.VITE_APP_DEPOSIT_LINK;
 
   // Sample balance data
-  const contractBalance = "0.060 BNB";
-  const totalWithdrawn = "0.408 BNB";
+  const contractBalance = "0.000 BNB";
+  const totalWithdrawn = "0.000 BNB";
 
   return (
     <Container style={{ backgroundColor: heroBgColor, color: heroTextColor }}>
       <Container>
-        <div className="row align-items-stretch g-4">
+        <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
           {/* Left Section: Profit Info */}
           <div className="col-lg-6 col-md-6 d-flex">
-            <div className="w-100 p-4 bg-black shadow rounded border d-flex flex-column">
-              <h2 className="fw-bold mb-4" style={{ color: "#ffffff" }}>
+            <div
+              className="w-100 p-4 rounded d-flex flex-column"
+              style={{
+                backgroundColor: "#292d36", // Updated background color
+                color: "#ffffff", // Text color set to white
+                border: "none", // Remove border
+                boxShadow: "none", // Remove shadow
+              }}
+            >
+              <h2
+                className="fw-bold mb-4"
+                style={{
+                  color: "#ffffff",
+                  marginTop: "-20px", // Move text up
+                  fontSize: "2.5rem", // Increase text size
+                }}
+              >
                 Fuel your crypto ambitions
                 <br />
                 with BNB.
               </h2>
               <div>
-                <p className="mb-3" style={{ color: "#ffffff" }}>
+                <p
+                  className="mb-0" // Remove bottom margin
+                  style={{ color: "#ffffff", marginBottom: "0" }}
+                >
                   <strong>Basic interest rate:</strong>{" "}
-                  <span className="text-primary">4% every 24 hrs</span>
+                  <span
+                    style={{
+                      color: "#ffffff", // White text for the percentage
+                      fontWeight: "700", // Extra bold text
+                    }}
+                  >
+                    4% every 24 hrs
+                  </span>
                 </p>
-                <p className="mb-3" style={{ color: "#ffffff" }}>
+                <p
+                  className="mb-0" // Remove bottom margin
+                  style={{ color: "#ffffff", marginBottom: "0" }}
+                >
                   <strong>Personal hold-bonus:</strong>{" "}
-                  <span className="text-primary">
+                  <span
+                    style={{
+                      color: "#ffffff", // White text for the percentage
+                      fontWeight: "700", // Extra bold text
+                    }}
+                  >
                     +0.1% for every 24 hrs without withdrawal
                   </span>
                 </p>
-                <p className="mb-3" style={{ color: "#ffffff" }}>
+                <p
+                  className="mb-0" // Remove bottom margin
+                  style={{ color: "#ffffff", marginBottom: "0" }}
+                >
                   <strong>Contract total amount bonus:</strong>{" "}
-                  <span className="text-primary">
+                  <span
+                    style={{
+                      color: "#ffffff", // White text for the percentage
+                      fontWeight: "700", // Extra bold text
+                    }}
+                  >
                     +0.1% for every 500 BNB on platform address balance
                   </span>
                 </p>
@@ -56,7 +97,7 @@ const HeroSection = () => {
                     borderRadius: "30px",
                     fontWeight: "600",
                     fontSize: "1rem",
-                    border: "none",
+                    border: "none", // No border on the button
                   }}
                 >
                   Presentation
@@ -66,7 +107,7 @@ const HeroSection = () => {
                   className="btn"
                   style={{
                     color: buttonOutlineColor,
-                    border: `2px solid ${buttonOutlineColor}`,
+                    border: `2px solid ${buttonOutlineColor}`, // Border for the outline button
                     padding: "10px 20px",
                     borderRadius: "30px",
                     fontWeight: "600",
@@ -89,8 +130,8 @@ const HeroSection = () => {
                 padding: "20px",
                 color: "#ffffff",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
-                maxWidth: "400px",
-                width: "100%",
+                maxWidth: "500px", // Increased width of the boxes
+                width: "100%", // Ensure the box uses full available width
               }}
             >
               {/* Title */}
