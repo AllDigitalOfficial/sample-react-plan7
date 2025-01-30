@@ -14,7 +14,8 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR || "#007bff";
   const presentationLink =
     import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf";
-  const depositLink = import.meta.env.VITE_APP_DEPOSIT_LINK || "#deposit";
+  const smartContractLink =
+    import.meta.env.VITE_APP_SMART_CONTRACT || "#smart-contract";
   const arrowButtonColor =
     import.meta.env.VITE_APP_ARROW_BUTTON_COLOR || "#ffffff";
   const arrowButtonBgColor =
@@ -27,6 +28,10 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_WITHDRAWN_BG_COLOR || "#343a40";
   const withdrawnTextColor =
     import.meta.env.VITE_APP_WITHDRAWN_TEXT_COLOR || "#dc3545";
+  const profitTextColor =
+    import.meta.env.VITE_APP_PROFIT_TEXT_COLOR || "#ffffff";
+  const profitSectionBgColor =
+    import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36";
 
   // Get balance data from environment variables
   const contractBalance =
@@ -68,8 +73,8 @@ const HeroSection: React.FC = () => {
           <div
             className="w-100 p-4 rounded d-flex flex-column"
             style={{
-              backgroundColor: "#292d36",
-              color: "#ffffff",
+              backgroundColor: profitSectionBgColor,
+              color: profitTextColor,
               border: "none",
               boxShadow: "none",
             }}
@@ -77,7 +82,7 @@ const HeroSection: React.FC = () => {
             <h2
               className="fw-bold mb-4"
               style={{
-                color: "#ffffff",
+                color: profitTextColor,
                 marginTop: "-20px",
                 fontSize: "2.5rem",
               }}
@@ -87,22 +92,22 @@ const HeroSection: React.FC = () => {
               with BNB.
             </h2>
             <div>
-              <p className="mb-0" style={{ color: "#ffffff" }}>
+              <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Basic interest rate:</strong>{" "}
-                <span style={{ color: "#ffffff", fontWeight: "700" }}>
-                  4% every 24 hrs
+                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+                  {import.meta.env.VITE_APP_BASIC_INTEREST_RATE}
                 </span>
               </p>
-              <p className="mb-0" style={{ color: "#ffffff" }}>
+              <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Personal hold-bonus:</strong>{" "}
-                <span style={{ color: "#ffffff", fontWeight: "700" }}>
-                  +0.1% for every 24 hrs without withdrawal
+                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+                  {import.meta.env.VITE_APP_HOLD_BONUS}
                 </span>
               </p>
-              <p className="mb-0" style={{ color: "#ffffff" }}>
+              <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Contract total amount bonus:</strong>{" "}
-                <span style={{ color: "#ffffff", fontWeight: "700" }}>
-                  +0.1% for every 500 BNB on platform address balance
+                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+                  {import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS}
                 </span>
               </p>
             </div>
@@ -125,7 +130,7 @@ const HeroSection: React.FC = () => {
                 Presentation
               </a>
               <a
-                href={depositLink}
+                href={smartContractLink}
                 className="btn"
                 style={{
                   color: buttonOutlineColor,
@@ -137,7 +142,7 @@ const HeroSection: React.FC = () => {
                   background: "transparent",
                 }}
               >
-                Deposit
+                Smart Contract
               </a>
             </div>
           </div>

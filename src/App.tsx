@@ -16,7 +16,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Set document title
     document.title = import.meta.env.VITE_APP_TITLE || "BnbOath";
-    
+
     // Set favicon
     const favicon = document.querySelector(
       "link[rel*='icon']"
