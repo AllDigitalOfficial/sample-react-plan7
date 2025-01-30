@@ -1,12 +1,16 @@
-import React from 'react';
+import React from "react";
 
 const Levels = () => {
-  // Get environment variable values
-  const sectionBgColor = import.meta.env.VITE_APP_LEVELS_SECTION_BG_COLOR 
-  const titleColor = import.meta.env.VITE_APP_LEVELS_TITLE_COLOR 
-  const cardBgColor = import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR 
-  const cardTextColor = import.meta.env.VITE_APP_LEVEL_CARD_TEXT_COLOR 
-  const percentageColor = import.meta.env.VITE_APP_LEVEL_PERCENTAGE_COLOR 
+  // Get environment variable values with fallback values
+  const sectionBgColor =
+    import.meta.env.VITE_APP_LEVELS_SECTION_BG_COLOR || "#111827";
+  const titleColor = import.meta.env.VITE_APP_LEVELS_TITLE_COLOR || "#ffffff";
+  const cardBgColor = import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR || "#c2fcec";
+  const cardTextColor =
+    import.meta.env.VITE_APP_LEVEL_CARD_TEXT_COLOR || "#000000";
+  const percentageColor =
+    import.meta.env.VITE_APP_LEVEL_PERCENTAGE_COLOR || "#000000";
+  const initialValue = import.meta.env.VITE_APP_LEVEL_INITIAL_VALUE || 0;
 
   return (
     <section
@@ -31,10 +35,10 @@ const Levels = () => {
                 <div
                   className="card shadow-sm p-3"
                   style={{
-                    backgroundColor: cardBgColor, // Light teal color for levels (from .env)
-                    color: cardTextColor, // Text color (from .env)
-                    borderRadius: "12px", // Rounded corners for the card
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Soft shadow for a professional look
+                    backgroundColor: cardBgColor,
+                    color: cardTextColor,
+                    borderRadius: "12px",
+                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
                   }}
                 >
                   <div className="card-body">
@@ -42,7 +46,7 @@ const Levels = () => {
                       <span style={{ fontWeight: "bold" }}>Level {level}</span>
                       <em
                         style={{
-                          color: percentageColor, // Percentage color (from .env)
+                          color: percentageColor,
                           fontWeight: "500",
                         }}
                       >
@@ -57,7 +61,7 @@ const Levels = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      0
+                      {initialValue}
                     </h3>
                   </div>
                 </div>

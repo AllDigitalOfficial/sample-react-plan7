@@ -1,22 +1,27 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 const Navbars = () => {
-  // Get environment variable values from the .env file
-  const navbarBgColor = import.meta.env.VITE_APP_NAVBAR_BG_COLOR;
-  const navbarTextColor = import.meta.env.VITE_APP_NAVBAR_TEXT_COLOR;
+  // Get environment variable values from the .env file with fallback values
+  const navbarBgColor = import.meta.env.VITE_APP_NAVBAR_BG_COLOR || "#292d36";
+  const navbarTextColor =
+    import.meta.env.VITE_APP_NAVBAR_TEXT_COLOR || "#ffffff";
 
-  const buttonBgColor = import.meta.env.VITE_APP_BUTTON_BG_COLOR;
-  const buttonTextColor = import.meta.env.VITE_APP_BUTTON_TEXT_COLOR;
-  const buttonBorderColor = import.meta.env.VITE_APP_BUTTON_BORDER_COLOR;
+  const buttonBgColor = import.meta.env.VITE_APP_BUTTON_BG_COLOR || "#007bff";
+  const buttonTextColor =
+    import.meta.env.VITE_APP_BUTTON_TEXT_COLOR || "#ffffff";
+  const buttonBorderColor =
+    import.meta.env.VITE_APP_BUTTON_BORDER_COLOR || "#007bff";
+  const smartContractLink =
+    import.meta.env.VITE_APP_SMART_CONTRACT ||
+    "";
 
   return (
     <>
       <Navbar
-      
         expand="lg"
         className="py-3"
         style={{
-          backgroundColor: navbarBgColor,  // Apply the background color from the .env
+          backgroundColor: navbarBgColor, // Apply the background color from the .env
         }}
       >
         <Container>
@@ -25,7 +30,7 @@ const Navbars = () => {
             {/* Replace BnbOath text with an image */}
             <img
               alt="Logo"
-              src="/bnboath.png"  // Reference the image stored in the public folder
+              src="/bnboath.png" // Reference the image stored in the public folder
               className="img-fluid logo" // Added the 'logo' class for custom styling
             />
           </Navbar.Brand>
@@ -44,9 +49,7 @@ const Navbars = () => {
                 fontSize: "1rem", // Adjust font size
                 transition: "all 0.3s ease", // Smooth transition for hover effects
               }}
-              onClick={() =>
-                window.open(import.meta.env.VITE_APP_SMART_CONTRACT || "", "_blank")
-              }
+              onClick={() => window.open(smartContractLink, "_blank")}
             >
               Smart Contract
             </Button>
@@ -62,7 +65,6 @@ const Navbars = () => {
                 fontSize: "1rem", // Adjust font size
                 transition: "all 0.3s ease", // Smooth transition for hover effects
               }}
-              
             >
               Connect Wallet
             </Button>

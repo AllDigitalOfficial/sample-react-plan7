@@ -1,46 +1,68 @@
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Container, Button } from "react-bootstrap"
-import { ArrowUp } from "react-bootstrap-icons"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { Container, Button } from "react-bootstrap";
+import { ArrowUp } from "react-bootstrap-icons";
 
 const HeroSection: React.FC = () => {
-  const [showScroll, setShowScroll] = useState(false)
+  const [showScroll, setShowScroll] = useState(false);
 
-  // Get environment variable values
-  const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR
-  const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR
-  const buttonOutlineColor = import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR
-  const presentationLink = import.meta.env.VITE_APP_PRESENTATION_LINK
-  const depositLink = import.meta.env.VITE_APP_DEPOSIT_LINK
-  const arrowButtonColor = import.meta.env.VITE_APP_ARROW_BUTTON_COLOR
-  const arrowButtonBgColor = import.meta.env.VITE_APP_ARROW_BUTTON_BG_COLOR
-  const rightSectionBgColor = import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR
+  // Get environment variable values with fallback values
+  const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36";
+  const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff";
+  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
+  const buttonOutlineColor =
+    import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR || "#007bff";
+  const presentationLink =
+    import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf";
+  const depositLink = import.meta.env.VITE_APP_DEPOSIT_LINK || "#deposit";
+  const arrowButtonColor =
+    import.meta.env.VITE_APP_ARROW_BUTTON_COLOR || "#ffffff";
+  const arrowButtonBgColor =
+    import.meta.env.VITE_APP_ARROW_BUTTON_BG_COLOR || "#192337";
+  const rightSectionBgColor =
+    import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529";
+  const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700";
+  const balanceColor = import.meta.env.VITE_APP_BALANCE_COLOR || "#28a745";
+  const withdrawnBgColor =
+    import.meta.env.VITE_APP_WITHDRAWN_BG_COLOR || "#343a40";
+  const withdrawnTextColor =
+    import.meta.env.VITE_APP_WITHDRAWN_TEXT_COLOR || "#dc3545";
 
-  // Sample balance data
-  const contractBalance = "0.000 BNB"
-  const totalWithdrawn = "0.000 BNB"
+  // Get balance data from environment variables
+  const contractBalance =
+    import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
+  const totalWithdrawn = import.meta.env.VITE_APP_TOTAL_WITHDRAWN || "0.000";
 
   useEffect(() => {
     const checkScrollTop = () => {
       if (!showScroll && window.scrollY > 400) {
-        setShowScroll(true)
+        setShowScroll(true);
       } else if (showScroll && window.scrollY <= 400) {
-        setShowScroll(false)
+        setShowScroll(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", checkScrollTop)
-    return () => window.removeEventListener("scroll", checkScrollTop)
-  }, [showScroll])
+    window.addEventListener("scroll", checkScrollTop);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, [showScroll]);
 
   const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <Container fluid style={{ backgroundColor: heroBgColor, color: heroTextColor, position: "relative" }}>
-      <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
+    <Container
+      fluid
+      style={{
+        backgroundColor: heroBgColor,
+        color: heroTextColor,
+        position: "relative",
+      }}
+    >
+      <div
+        className="row align-items-center g-4"
+        style={{ minHeight: "600px" }}
+      >
         {/* Left Section: Profit Info */}
         <div className="col-lg-6 col-md-6 d-flex">
           <div
@@ -67,11 +89,15 @@ const HeroSection: React.FC = () => {
             <div>
               <p className="mb-0" style={{ color: "#ffffff" }}>
                 <strong>Basic interest rate:</strong>{" "}
-                <span style={{ color: "#ffffff", fontWeight: "700" }}>4% every 24 hrs</span>
+                <span style={{ color: "#ffffff", fontWeight: "700" }}>
+                  4% every 24 hrs
+                </span>
               </p>
               <p className="mb-0" style={{ color: "#ffffff" }}>
                 <strong>Personal hold-bonus:</strong>{" "}
-                <span style={{ color: "#ffffff", fontWeight: "700" }}>+0.1% for every 24 hrs without withdrawal</span>
+                <span style={{ color: "#ffffff", fontWeight: "700" }}>
+                  +0.1% for every 24 hrs without withdrawal
+                </span>
               </p>
               <p className="mb-0" style={{ color: "#ffffff" }}>
                 <strong>Contract total amount bonus:</strong>{" "}
@@ -124,7 +150,7 @@ const HeroSection: React.FC = () => {
               backgroundColor: rightSectionBgColor,
               borderRadius: "15px",
               padding: "20px",
-              color: "#ffffff",
+              color: heroTextColor,
               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
               maxWidth: "500px",
               width: "100%",
@@ -133,7 +159,7 @@ const HeroSection: React.FC = () => {
             {/* Title */}
             <h3
               style={{
-                color: "#ffd700",
+                color: titleColor,
                 textAlign: "center",
                 marginBottom: "15px",
               }}
@@ -148,7 +174,7 @@ const HeroSection: React.FC = () => {
                   margin: 0,
                   fontSize: "2rem",
                   fontWeight: "700",
-                  color: "#28a745",
+                  color: balanceColor,
                 }}
               >
                 {contractBalance}
@@ -158,19 +184,21 @@ const HeroSection: React.FC = () => {
             {/* Total Withdrawns */}
             <div
               style={{
-                backgroundColor: "#343a40",
+                backgroundColor: withdrawnBgColor,
                 padding: "15px",
                 borderRadius: "10px",
                 textAlign: "center",
               }}
             >
-              <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700" }}>Total Withdrawn</p>
+              <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700" }}>
+                Total Withdrawn
+              </p>
               <p
                 style={{
                   margin: 0,
                   fontSize: "1.8rem",
                   fontWeight: "700",
-                  color: "#dc3545",
+                  color: withdrawnTextColor,
                 }}
               >
                 {totalWithdrawn}
@@ -202,7 +230,7 @@ const HeroSection: React.FC = () => {
         <ArrowUp size={24} color={arrowButtonColor} />
       </Button>
     </Container>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

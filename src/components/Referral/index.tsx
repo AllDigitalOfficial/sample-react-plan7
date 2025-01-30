@@ -1,58 +1,58 @@
-import type React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 
 const Referral: React.FC = () => {
-  // Get environment variable values
-  const bgColor = import.meta.env.VITE_APP_REFERRAL_BG_COLOR
-  const textColor = import.meta.env.VITE_APP_REFERRAL_TEXT_COLOR
-  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR
-  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR
-  const buttonHoverColor = import.meta.env.VITE_APP_BUTTON_HOVER_COLOR
+  // Get environment variable values with fallback values
+  const bgColor = import.meta.env.VITE_APP_REFERRAL_BG_COLOR || "#111827";
+  const textColor = import.meta.env.VITE_APP_REFERRAL_TEXT_COLOR || "#ffffff";
+  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR || "#192337";
+  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR || "#ffffff";
+  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
+  const buttonHoverColor = import.meta.env.VITE_APP_BUTTON_HOVER_COLOR || "#0056b3";
+  const buttonHoverTextColor = import.meta.env.VITE_APP_BUTTON_HOVER_TEXT_COLOR || "#ffffff";
+  const totalReward = import.meta.env.VITE_APP_REFERRAL_TOTAL_REWARD || "0.000 BNB";
+  const totalCount = import.meta.env.VITE_APP_REFERRAL_TOTAL_COUNT || 0;
+  const toastBgColor = import.meta.env.VITE_APP_TOAST_BG_COLOR || "#959c9c";
+  const toastTextColor = import.meta.env.VITE_APP_TOAST_TEXT_COLOR || "#ffffff";
+  const toastShadowColor = import.meta.env.VITE_APP_TOAST_SHADOW_COLOR || "rgba(0, 0, 0, 0.2)";
+  const messageBgColor = import.meta.env.VITE_APP_MESSAGE_BG_COLOR || "rgba(255, 255, 255, 0.1)";
+  const messageBorderColor = import.meta.env.VITE_APP_MESSAGE_BORDER_COLOR || "rgba(255, 255, 255, 0.2)";
 
-  // State for toast visibility
-  const [showToast, setShowToast] = useState(false)
+  const [showToast, setShowToast] = useState(false);
 
-  // Function to handle link copying and show toast
   const handleCopyLink = () => {
-    // Simulate copying the referral link (you can replace this with actual logic)
-    const referralLink = "https://your-referral-link.com" // replace with dynamic link
+    const referralLink = "https://your-referral-link.com";
     navigator.clipboard.writeText(referralLink).then(() => {
-      setShowToast(true) // Show the toast after the link is copied
-    })
-  }
+      setShowToast(true);
+    });
+  };
 
-  // Effect to hide toast after 3 seconds
   useEffect(() => {
-    let timer: number
+    let timer: number;
     if (showToast) {
       timer = window.setTimeout(() => {
-        setShowToast(false)
-      }, 3000)
+        setShowToast(false);
+      }, 3000);
     }
-    return () => clearTimeout(timer)
-  }, [showToast])
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   return (
     <div className="roadmap-area py-5" style={{ backgroundColor: bgColor }}>
       <div className="container">
         <div className="referral">
-          {/* Referral Program Heading */}
           <h2 className="mb-4" style={{ color: textColor, textAlign: "center" }}>
             Referral Program
           </h2>
 
-          {/* Referral Link Section */}
           <div className="d-flex flex-column flex-md-row align-items-center justify-content-center mb-4">
             <div
               className="referral-message p-3 rounded mb-3 mb-md-0 me-md-3"
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
+                backgroundColor: messageBgColor,
+                border: `1px solid ${messageBorderColor}`,
                 color: textColor,
                 fontWeight: "bold",
                 fontSize: "18px",
-                textShadow: "1px 1px 3px rgba(0, 0, 0, 0.5)",
                 maxWidth: "100%",
                 wordBreak: "break-word",
               }}
@@ -60,7 +60,6 @@ const Referral: React.FC = () => {
               You will get your referral link after investing...
             </div>
 
-            {/* Copy Link Button */}
             <div style={{ position: "relative" }}>
               <button
                 id="copyButton"
@@ -73,18 +72,17 @@ const Referral: React.FC = () => {
                 }}
                 onClick={handleCopyLink}
                 onMouseOver={(e) => {
-                  ;(e.target as HTMLButtonElement).style.backgroundColor = buttonHoverColor
-                  ;(e.target as HTMLButtonElement).style.color = "#fff"
+                  (e.target as HTMLButtonElement).style.backgroundColor = buttonHoverColor;
+                  (e.target as HTMLButtonElement).style.color = buttonHoverTextColor;
                 }}
                 onMouseOut={(e) => {
-                  ;(e.target as HTMLButtonElement).style.backgroundColor = "transparent"
-                  ;(e.target as HTMLButtonElement).style.color = buttonColor
+                  (e.target as HTMLButtonElement).style.backgroundColor = "transparent";
+                  (e.target as HTMLButtonElement).style.color = buttonColor;
                 }}
               >
                 Copy Link
               </button>
 
-              {/* Toast message positioned above the button */}
               {showToast && (
                 <div
                   style={{
@@ -93,11 +91,11 @@ const Referral: React.FC = () => {
                     left: "50%",
                     transform: "translateX(-50%)",
                     zIndex: 9999,
-                    backgroundColor: "rgb(149, 156, 156)",
-                    color: "#ffffff",
+                    backgroundColor: toastBgColor,
+                    color: toastTextColor,
                     padding: "8px 12px",
                     borderRadius: "5px",
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                    boxShadow: `0 2px 4px ${toastShadowColor}`,
                     fontWeight: "bold",
                     whiteSpace: "nowrap",
                     fontSize: "14px",
@@ -109,13 +107,12 @@ const Referral: React.FC = () => {
             </div>
           </div>
 
-          {/* Referral Stats Section */}
           <div className="row">
             <div className="col-md-6 mb-3">
               <div className="card shadow-sm p-3" style={{ backgroundColor: cardBgColor, color: cardTextColor }}>
                 <h3>Total Reward</h3>
-                <p id="usertotalreferralbonus" className="fs-4 fw-bold">
-                  0.000 BNB
+                <p id="userTotalReferralBonus" className="fs-4 fw-bold">
+                  {totalReward}
                 </p>
               </div>
             </div>
@@ -124,7 +121,7 @@ const Referral: React.FC = () => {
               <div className="card shadow-sm p-3" style={{ backgroundColor: cardBgColor, color: cardTextColor }}>
                 <h3>Total Referral</h3>
                 <p id="countdownline" className="fs-4 fw-bold">
-                  0
+                  {totalCount}
                 </p>
               </div>
             </div>
@@ -132,8 +129,7 @@ const Referral: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Referral
-
+export default Referral;
