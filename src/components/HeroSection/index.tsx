@@ -1,59 +1,51 @@
-import type React from "react";
-import { useState, useEffect } from "react";
-import { Container, Button } from "react-bootstrap";
-import { ArrowUp } from "react-bootstrap-icons";
+import type React from "react"
+import { useState, useEffect } from "react"
+import { Container, Button } from "react-bootstrap"
+import { ArrowUp } from "react-bootstrap-icons"
 
 const HeroSection: React.FC = () => {
-  const [showScroll, setShowScroll] = useState(false);
+  const [showScroll, setShowScroll] = useState(false)
 
-  // Get environment variable values with fallback values
-  const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36";
-  const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff";
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
-  const buttonOutlineColor =
-    import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR || "#007bff";
-  const presentationLink =
-    import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf";
-  const smartContractLink =
-    import.meta.env.VITE_APP_SMART_CONTRACT || "#smart-contract";
-  const arrowButtonColor =
-    import.meta.env.VITE_APP_ARROW_BUTTON_COLOR || "#ffffff";
-  const arrowButtonBgColor =
-    import.meta.env.VITE_APP_ARROW_BUTTON_BG_COLOR || "#192337";
-  const rightSectionBgColor =
-    import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529";
-  const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700";
-  const balanceColor = import.meta.env.VITE_APP_BALANCE_COLOR || "#28a745";
-  const withdrawnBgColor =
-    import.meta.env.VITE_APP_WITHDRAWN_BG_COLOR || "#343a40";
-  const withdrawnTextColor =
-    import.meta.env.VITE_APP_WITHDRAWN_TEXT_COLOR || "#dc3545";
-  const profitTextColor =
-    import.meta.env.VITE_APP_PROFIT_TEXT_COLOR || "#ffffff";
-  const profitSectionBgColor =
-    import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36";
+  // Get environment variable values
+  const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36"
+  const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff"
+  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff"
+  const buttonOutlineColor = import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR || "#007bff"
+  const presentationLink = import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf"
+  const smartContractLink = import.meta.env.VITE_APP_SMART_CONTRACT || "#smart-contract"
+  const arrowButtonColor = import.meta.env.VITE_APP_ARROW_BUTTON_COLOR || "#ffffff"
+  const arrowButtonBgColor = import.meta.env.VITE_APP_ARROW_BUTTON_BG_COLOR || "#192337"
+  const rightSectionBgColor = import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529"
+  const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700"
+  const balanceColor = import.meta.env.VITE_APP_BALANCE_COLOR || "#28a745"
+  const withdrawnBgColor = import.meta.env.VITE_APP_WITHDRAWN_BG_COLOR || "#343a40"
+  const withdrawnTextColor = import.meta.env.VITE_APP_WITHDRAWN_TEXT_COLOR || "#dc3545"
+  const profitTextColor = import.meta.env.VITE_APP_PROFIT_TEXT_COLOR || "#ffffff"
+  const profitSectionBgColor = import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36"
 
   // Get balance data from environment variables
-  const contractBalance =
-    import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
-  const totalWithdrawn = import.meta.env.VITE_APP_TOTAL_WITHDRAWN || "0.000";
+  const contractBalance = import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB"
+  const totalWithdrawn = import.meta.env.VITE_APP_TOTAL_WITHDRAWN || "0.000"
+  const basicInterestRate = import.meta.env.VITE_APP_BASIC_INTEREST_RATE || "4% every 24 hrs"
+  const holdBonus = import.meta.env.VITE_APP_HOLD_BONUS || "+0.1% for every 24 hrs without withdrawal"
+  const contractAmountBonus = import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS || "+0.1% for every 500 BNB on platform address balance"
 
   useEffect(() => {
     const checkScrollTop = () => {
       if (!showScroll && window.scrollY > 400) {
-        setShowScroll(true);
+        setShowScroll(true)
       } else if (showScroll && window.scrollY <= 400) {
-        setShowScroll(false);
+        setShowScroll(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", checkScrollTop);
-    return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [showScroll]);
+    window.addEventListener("scroll", checkScrollTop)
+    return () => window.removeEventListener("scroll", checkScrollTop)
+  }, [showScroll])
 
   const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <Container
@@ -64,10 +56,7 @@ const HeroSection: React.FC = () => {
         position: "relative",
       }}
     >
-      <div
-        className="row align-items-center g-4"
-        style={{ minHeight: "600px" }}
-      >
+      <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
         {/* Left Section: Profit Info */}
         <div className="col-lg-6 col-md-6 d-flex">
           <div
@@ -95,35 +84,31 @@ const HeroSection: React.FC = () => {
               <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Basic interest rate:</strong>{" "}
                 <span style={{ color: profitTextColor, fontWeight: "700" }}>
-                  {import.meta.env.VITE_APP_BASIC_INTEREST_RATE}
+                  {basicInterestRate}
                 </span>
               </p>
               <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Personal hold-bonus:</strong>{" "}
                 <span style={{ color: profitTextColor, fontWeight: "700" }}>
-                  {import.meta.env.VITE_APP_HOLD_BONUS}
+                  {holdBonus}
                 </span>
               </p>
               <p className="mb-0" style={{ color: profitTextColor }}>
                 <strong>Contract total amount bonus:</strong>{" "}
                 <span style={{ color: profitTextColor, fontWeight: "700" }}>
-                  {import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS}
+                  {contractAmountBonus}
                 </span>
               </p>
             </div>
-            <div className="d-flex gap-3 mt-4 justify-content-start">
+            <div className="d-flex flex-wrap gap-3 mt-4 justify-content-start">
               <a
                 href={presentationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn"
+                className="btn hero-button"
                 style={{
                   backgroundColor: buttonColor,
                   color: "#fff",
-                  padding: "10px 20px",
-                  borderRadius: "30px",
-                  fontWeight: "600",
-                  fontSize: "1rem",
                   border: "none",
                 }}
               >
@@ -131,14 +116,10 @@ const HeroSection: React.FC = () => {
               </a>
               <a
                 href={smartContractLink}
-                className="btn"
+                className="btn hero-button"
                 style={{
                   color: buttonOutlineColor,
                   border: `2px solid ${buttonOutlineColor}`,
-                  padding: "10px 20px",
-                  borderRadius: "30px",
-                  fontWeight: "600",
-                  fontSize: "1rem",
                   background: "transparent",
                 }}
               >
@@ -195,9 +176,7 @@ const HeroSection: React.FC = () => {
                 textAlign: "center",
               }}
             >
-              <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700" }}>
-                Total Withdrawn
-              </p>
+              <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700" }}>Total Withdrawn</p>
               <p
                 style={{
                   margin: 0,
@@ -234,8 +213,36 @@ const HeroSection: React.FC = () => {
       >
         <ArrowUp size={24} color={arrowButtonColor} />
       </Button>
-    </Container>
-  );
-};
 
-export default HeroSection;
+      <style>{`
+        .hero-button {
+          padding: 10px 20px;
+          border-radius: 30px;
+          font-weight: 600;
+          font-size: 1rem;
+          white-space: nowrap;
+          min-width: 150px;
+          text-align: center;
+        }
+
+        @media (max-width: 576px) {
+          .hero-button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            min-width: 120px;
+          }
+        }
+
+        @media (max-width: 375px) {
+          .hero-button {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            min-width: 100px;
+          }
+        }
+      `}</style>
+    </Container>
+  )
+}
+
+export default HeroSection
