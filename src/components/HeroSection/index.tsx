@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
         backgroundColor: heroBgColor,
         color: heroTextColor,
         position: "relative",
-        paddingTop: "100px", // Ensures the content is not hidden behind the navbar on mobile
+        marginTop: "150px", // Ensures the content is not hidden behind the navbar on mobile
       }}
     >
       <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
