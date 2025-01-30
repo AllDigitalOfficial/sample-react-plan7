@@ -156,15 +156,10 @@ const Deposit = () => {
 
               <button
                 id="sendTransaction"
-                className="btn"
+                className="btn btn-lg"
                 style={{
                   backgroundColor: buttonColor,
                   color: buttonTextColor,
-                  width: "auto",
-                  padding: "8px 16px",
-                  borderRadius: "5px",
-                  fontSize: "1rem",
-                  transition: "all 0.3s ease-in-out",
                 }}
               >
                 Make Deposit
@@ -173,19 +168,6 @@ const Deposit = () => {
           </div>
         </div>
       </div>
-
-      <style>
-        {`
-          #depositAmount::placeholder {
-            color: ${placeholderColor};
-          }
-
-          .btn:hover {
-            background-color: ${buttonHoverColor};
-            transform: scale(1.05);
-          }
-        `}
-      </style>
     </div>
   );
 };
