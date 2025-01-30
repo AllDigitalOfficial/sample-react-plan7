@@ -1,12 +1,8 @@
-import type React from "react";
-import { useState, useEffect } from "react";
-import { Container, Button } from "react-bootstrap";
-import { ArrowUp } from "react-bootstrap-icons";
+import React from "react";
+import { Container } from "react-bootstrap";
 
 const HeroSection: React.FC = () => {
-  const [showScroll, setShowScroll] = useState(false);
-
-  // Get environment variable values
+  // Get environment variable values for HeroSection
   const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36";
   const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff";
   const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
@@ -16,10 +12,6 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf";
   const smartContractLink =
     import.meta.env.VITE_APP_SMART_CONTRACT || "#smart-contract";
-  const arrowButtonColor =
-    import.meta.env.VITE_APP_ARROW_BUTTON_COLOR || "#ffffff";
-  const arrowButtonBgColor =
-    import.meta.env.VITE_APP_ARROW_BUTTON_BG_COLOR || "#192337";
   const rightSectionBgColor =
     import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529";
   const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700";
@@ -46,23 +38,6 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS ||
     "+0.1% for every 500 BNB on platform address balance";
 
-  useEffect(() => {
-    const checkScrollTop = () => {
-      if (!showScroll && window.scrollY > 400) {
-        setShowScroll(true);
-      } else if (showScroll && window.scrollY <= 400) {
-        setShowScroll(false);
-      }
-    };
-
-    window.addEventListener("scroll", checkScrollTop);
-    return () => window.removeEventListener("scroll", checkScrollTop);
-  }, [showScroll]);
-
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <Container
       fluid
@@ -70,12 +45,10 @@ const HeroSection: React.FC = () => {
         backgroundColor: heroBgColor,
         color: heroTextColor,
         position: "relative",
+        paddingTop: "100px", // Ensures the content is not hidden behind the navbar on mobile
       }}
     >
-      <div
-        className="row align-items-center g-4"
-        style={{ minHeight: "600px" }}
-      >
+      <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
         {/* Left Section: Profit Info */}
         <div className="col-lg-6 col-md-6 d-flex">
           <div
@@ -212,28 +185,6 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll to Top Button */}
-      <Button
-        onClick={scrollTop}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          display: showScroll ? "flex" : "none",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          backgroundColor: arrowButtonBgColor,
-          border: "none",
-          boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.2)",
-          zIndex: 1000,
-        }}
-      >
-        <ArrowUp size={24} color={arrowButtonColor} />
-      </Button>
     </Container>
   );
 };

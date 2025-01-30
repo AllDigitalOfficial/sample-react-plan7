@@ -3,6 +3,7 @@ import { Navbar, Container, Nav, Button, Row, Col } from "react-bootstrap";
 const Navbars = () => {
   const {
     VITE_APP_NAVBAR_BG_COLOR: navbarBgColor = "#292d36",
+    VITE_APP_NAVBAR_TEXT_COLOR: navbarTextColor = "#ffffff",
     VITE_APP_BUTTON_BG_COLOR: buttonBgColor = "#007bff",
     VITE_APP_BUTTON_TEXT_COLOR: buttonTextColor = "#ffffff",
     VITE_APP_BUTTON_BORDER_COLOR: buttonBorderColor = "#007bff",
@@ -41,10 +42,24 @@ const Navbars = () => {
               <Button
                 className="btn w-50 ms-2"
                 onClick={() => (window.location.href = depositLink)}
+                style={{
+                  backgroundColor: buttonBgColor,
+                  color: buttonTextColor,
+                  border: `2px solid ${buttonBorderColor}`,
+                }}
               >
                 Deposit
               </Button>
-              <Button className="btn w-50 ms-2">Connect Wallet</Button>
+              <Button
+                className="btn w-50 ms-2"
+                style={{
+                  backgroundColor: buttonBgColor,
+                  color: buttonTextColor,
+                  border: `2px solid ${buttonBorderColor}`,
+                }}
+              >
+                Connect Wallet
+              </Button>
             </Nav>
           </Col>
         </Row>

@@ -10,6 +10,7 @@ import {
   Navbars,
   Referral,
   ReferralLinkData,
+  ScrollToTopButton,
 } from "./components";
 
 const App: React.FC = () => {
@@ -72,6 +73,8 @@ const App: React.FC = () => {
       <div className="col-lg-12 col-md-12 mb-4">
         <Footer />
       </div>
+
+      <ScrollToTopButton />
     </div>
   );
 };

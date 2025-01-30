@@ -6,8 +6,10 @@ import Levels from "./Levels";
 import Navbars from "./Navbar";
 import Referral from "./Referral";
 import ReferralLinkData from "./YourIncome";
+import ScrollToTopButton from "./ScrollUpButton";
 
 export {
+  ScrollToTopButton,
   ContractData,
   HeroSection,
   Footer,
