@@ -25,6 +25,9 @@ const HeroSection: React.FC = () => {
   const profitSectionBgColor =
     import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36";
 
+  // New hero heading from env
+  const heroHeading = import.meta.env.VITE_APP_HERO_HEADING || "Fuel your crypto ambitions with BNB."; // Default if env is missing
+
   // Get balance data from environment variables
   const contractBalance =
     import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
@@ -68,9 +71,7 @@ const HeroSection: React.FC = () => {
                 fontSize: "2.5rem",
               }}
             >
-              Fuel your crypto ambitions
-              <br />
-              with BNB.
+              {heroHeading} {/* Heading now coming from the environment variable */}
             </h2>
             <div>
               <p className="mb-0" style={{ color: profitTextColor }}>
