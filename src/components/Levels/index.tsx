@@ -5,12 +5,21 @@ const Levels = () => {
   const sectionBgColor =
     import.meta.env.VITE_APP_LEVELS_SECTION_BG_COLOR || "#111827";
   const titleColor = import.meta.env.VITE_APP_LEVELS_TITLE_COLOR || "#ffffff";
-  const cardBgColor = import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR || "#c2fcec";
+  const cardBgColor =
+    import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR || "#c2fcec";
   const cardTextColor =
     import.meta.env.VITE_APP_LEVEL_CARD_TEXT_COLOR || "#000000";
   const percentageColor =
     import.meta.env.VITE_APP_LEVEL_PERCENTAGE_COLOR || "#000000";
-  const initialValue = import.meta.env.VITE_APP_LEVEL_INITIAL_VALUE || 0;
+
+  // Get initial values for each level from the environment variables
+  const levels = Array.from({ length: 7 }, (_, index) => {
+    const level = index + 1;
+    const value = parseFloat(import.meta.env[`VITE_APP_LEVEL_${level}_VALUE`] || 0); // Use the dynamic environment variable for each level
+    const percentage = `${level * 1}%`; // Percentage logic as before
+
+    return { level, value, percentage };
+  });
 
   return (
     <section
@@ -26,48 +35,43 @@ const Levels = () => {
           Referral Levels
         </h2>
         <div className="row">
-          {Array.from({ length: 7 }, (_, index) => {
-            const level = index + 1;
-            const percentage = `${level * 1}%`; // Logic for percentage
-
-            return (
-              <div key={level} className="col-md-4 col-lg-3 mb-4">
-                <div
-                  className="card shadow-sm p-3"
-                  style={{
-                    backgroundColor: cardBgColor,
-                    color: cardTextColor,
-                    borderRadius: "12px",
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-                  }}
-                >
-                  <div className="card-body">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-                      <span style={{ fontWeight: "bold" }}>Level {level}</span>
-                      <em
-                        style={{
-                          color: percentageColor,
-                          fontWeight: "500",
-                        }}
-                      >
-                        {percentage}
-                      </em>
-                    </div>
-                    <h3
-                      id={`level-${level}`}
-                      className="text-center"
+          {levels.map(({ level, value, percentage }) => (
+            <div key={level} className="col-md-4 col-lg-3 mb-4">
+              <div
+                className="card shadow-sm p-3"
+                style={{
+                  backgroundColor: cardBgColor,
+                  color: cardTextColor,
+                  borderRadius: "12px",
+                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <div className="card-body">
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    <span style={{ fontWeight: "bold" }}>Level {level}</span>
+                    <em
                       style={{
-                        fontSize: "2rem",
-                        fontWeight: "bold",
+                        color: percentageColor,
+                        fontWeight: "500",
                       }}
                     >
-                      {initialValue}
-                    </h3>
+                      {percentage}
+                    </em>
                   </div>
+                  <h3
+                    id={`level-${level}`}
+                    className="text-center"
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {value}
+                  </h3>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
