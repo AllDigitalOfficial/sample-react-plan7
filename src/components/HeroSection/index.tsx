@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 const HeroSection: React.FC = () => {
-  // Get environment variable values for HeroSection
+  // Retrieve colors and values from environment variables
   const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36";
   const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff";
   const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
@@ -16,22 +16,19 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529";
   const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700";
   const balanceColor = import.meta.env.VITE_APP_BALANCE_COLOR || "#28a745";
-  const withdrawnBgColor =
-    import.meta.env.VITE_APP_WITHDRAWN_BG_COLOR || "#343a40";
-  const withdrawnTextColor =
-    import.meta.env.VITE_APP_WITHDRAWN_TEXT_COLOR || "#dc3545";
   const profitTextColor =
     import.meta.env.VITE_APP_PROFIT_TEXT_COLOR || "#ffffff";
   const profitSectionBgColor =
     import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36";
 
-  // New hero heading from env
-  const heroHeading = import.meta.env.VITE_APP_HERO_HEADING || "Fuel your crypto ambitions with BNB."; // Default if env is missing
+  // Hero section text and heading color
+  const heroHeading =
+    import.meta.env.VITE_APP_HERO_HEADING ||
+    "Fuel your crypto ambitions with BNB.";
+  const heroHeadingColor =
+    import.meta.env.VITE_APP_HERO_HEADING_COLOR || "#ffd700"; // Default Gold color
 
-  // Get balance data from environment variables
-  const contractBalance =
-    import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
-  const totalWithdrawn = import.meta.env.VITE_APP_TOTAL_WITHDRAWN || "0.000";
+  // Profit section values and their colors
   const basicInterestRate =
     import.meta.env.VITE_APP_BASIC_INTEREST_RATE || "4% every 24 hrs";
   const holdBonus =
@@ -41,6 +38,15 @@ const HeroSection: React.FC = () => {
     import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS ||
     "+0.1% for every 500 BNB on platform address balance";
 
+  const basicInterestRateColor =
+    import.meta.env.VITE_APP_BASIC_INTEREST_RATE_COLOR || "#ffffff";
+  const holdBonusColor = import.meta.env.VITE_APP_HOLD_BONUS_COLOR || "#ffffff";
+  const contractAmountBonusColor =
+    import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS_COLOR || "#ffffff";
+
+  const contractBalance =
+    import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
+
   return (
     <Container
       fluid
@@ -48,10 +54,13 @@ const HeroSection: React.FC = () => {
         backgroundColor: heroBgColor,
         color: heroTextColor,
         position: "relative",
-        marginTop: "150px", // Ensures the content is not hidden behind the navbar on mobile
+        paddingTop: "100px",
       }}
     >
-      <div className="row align-items-center g-4" style={{ minHeight: "600px" }}>
+      <div
+        className="row align-items-center g-4"
+        style={{ minHeight: "600px" }}
+      >
         {/* Left Section: Profit Info */}
         <div className="col-lg-6 col-md-6 d-flex">
           <div
@@ -66,29 +75,39 @@ const HeroSection: React.FC = () => {
             <h2
               className="fw-bold mb-4"
               style={{
-                color: profitTextColor,
+                color: heroHeadingColor, // Use the color for the heading from .env
                 marginTop: "-20px",
                 fontSize: "2.5rem",
               }}
             >
-              {heroHeading} {/* Heading now coming from the environment variable */}
+              {heroHeading} {/* Hero heading text */}
             </h2>
             <div>
-              <p className="mb-0" style={{ color: profitTextColor }}>
-                <strong>Basic interest rate:</strong>{" "}
-                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+              <p className="mb-0">
+                <strong style={{ color: basicInterestRateColor }}>
+                  Basic interest rate:
+                </strong>{" "}
+                <span
+                  style={{ fontWeight: "700", color: basicInterestRateColor }}
+                >
                   {basicInterestRate}
                 </span>
               </p>
-              <p className="mb-0" style={{ color: profitTextColor }}>
-                <strong>Personal hold-bonus:</strong>{" "}
-                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+              <p className="mb-0">
+                <strong style={{ color: holdBonusColor }}>
+                  Personal hold-bonus:
+                </strong>{" "}
+                <span style={{ fontWeight: "700", color: holdBonusColor }}>
                   {holdBonus}
                 </span>
               </p>
-              <p className="mb-0" style={{ color: profitTextColor }}>
-                <strong>Contract total amount bonus:</strong>{" "}
-                <span style={{ color: profitTextColor, fontWeight: "700" }}>
+              <p className="mb-0">
+                <strong style={{ color: contractAmountBonusColor }}>
+                  Contract total amount bonus:
+                </strong>{" "}
+                <span
+                  style={{ fontWeight: "700", color: contractAmountBonusColor }}
+                >
                   {contractAmountBonus}
                 </span>
               </p>
@@ -122,7 +141,7 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Section: Contract Balance and User Info */}
+        {/* Right Section: Contract Balance */}
         <div className="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
           <div
             style={{
@@ -135,7 +154,6 @@ const HeroSection: React.FC = () => {
               width: "100%",
             }}
           >
-            {/* Title */}
             <h3
               style={{
                 color: titleColor,
@@ -146,7 +164,6 @@ const HeroSection: React.FC = () => {
               Current Contract Balance
             </h3>
 
-            {/* Contract Balance */}
             <div style={{ marginBottom: "20px", textAlign: "center" }}>
               <p
                 style={{
@@ -157,30 +174,6 @@ const HeroSection: React.FC = () => {
                 }}
               >
                 {contractBalance}
-              </p>
-            </div>
-
-            {/* Total Withdrawns */}
-            <div
-              style={{
-                backgroundColor: withdrawnBgColor,
-                padding: "15px",
-                borderRadius: "10px",
-                textAlign: "center",
-              }}
-            >
-              <p style={{ margin: 0, fontSize: "1.2rem", fontWeight: "700" }}>
-                Total Withdrawn
-              </p>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "1.8rem",
-                  fontWeight: "700",
-                  color: withdrawnTextColor,
-                }}
-              >
-                {totalWithdrawn}
               </p>
             </div>
           </div>

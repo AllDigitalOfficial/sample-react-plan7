@@ -5,8 +5,7 @@ const Levels = () => {
   const sectionBgColor =
     import.meta.env.VITE_APP_LEVELS_SECTION_BG_COLOR || "#111827";
   const titleColor = import.meta.env.VITE_APP_LEVELS_TITLE_COLOR || "#ffffff";
-  const cardBgColor =
-    import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR || "#c2fcec";
+  const cardBgColor = import.meta.env.VITE_APP_LEVEL_CARD_BG_COLOR || "#c2fcec";
   const cardTextColor =
     import.meta.env.VITE_APP_LEVEL_CARD_TEXT_COLOR || "#000000";
   const percentageColor =
@@ -15,7 +14,10 @@ const Levels = () => {
   // Get initial values for each level from the environment variables
   const levels = Array.from({ length: 7 }, (_, index) => {
     const level = index + 1;
-    const value = parseFloat(import.meta.env[`VITE_APP_LEVEL_${level}_VALUE`] || 0); // Use the dynamic environment variable for each level
+    // Dynamically fetch the level value from the environment variable (e.g., VITE_APP_LEVEL_1_VALUE)
+    const value = parseFloat(
+      import.meta.env[`VITE_APP_LEVEL_${level}_VALUE`] || "0"
+    ); // Default value is 0 if not found
     const percentage = `${level * 1}%`; // Percentage logic as before
 
     return { level, value, percentage };
