@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 const Referral: React.FC = () => {
-  // Get environment variable values with fallback values
-  const bgColor = import.meta.env.VITE_APP_REFERRAL_BG_COLOR || "#111827";
-  const textColor = import.meta.env.VITE_APP_REFERRAL_TEXT_COLOR || "#ffffff";
-  const cardBgColor =
-    import.meta.env.VITE_APP_Referral_CARD_BG_COLOR || "#192337";
-  const cardTextColor = import.meta.env.VITE_APP_CARD_TEXT_COLOR || "#ffffff";
-  const buttonColor =
-    import.meta.env.VITE_APP_Referral_BUTTON_COLOR || "#007bff";
-  const buttonHoverColor =
-    import.meta.env.VITE_APP_BUTTON_HOVER_COLOR || "#0056b3";
-  const buttonHoverTextColor =
-    import.meta.env.VITE_APP_BUTTON_HOVER_TEXT_COLOR || "#ffffff";
-  const totalReward =
-    import.meta.env.VITE_APP_REFERRAL_TOTAL_REWARD || "0.000 BNB";
-  const totalCount = import.meta.env.VITE_APP_REFERRAL_TOTAL_COUNT || 0;
-  const toastBgColor = import.meta.env.VITE_APP_TOAST_BG_COLOR || "#959c9c";
-  const toastTextColor = import.meta.env.VITE_APP_TOAST_TEXT_COLOR || "#ffffff";
-  const toastShadowColor =
-    import.meta.env.VITE_APP_TOAST_SHADOW_COLOR || "rgba(0, 0, 0, 0.2)";
-  const messageBgColor =
-    import.meta.env.VITE_APP_MESSAGE_BG_COLOR || "rgba(255, 255, 255, 0.1)";
-  const messageBorderColor =
-    import.meta.env.VITE_APP_MESSAGE_BORDER_COLOR || "rgba(255, 255, 255, 0.2)";
+  const styles = {
+    bgColor: import.meta.env.VITE_APP_REFERRAL_REFERRAL_BG_COLOR || "#111827",
+    textColor: import.meta.env.VITE_APP_REFERRAL_REFERRAL_TEXT_COLOR || "#ffffff",
+    cardBgColor: import.meta.env.VITE_APP_REFERRAL_Referral_CARD_BG_COLOR || "#192337",
+    cardTextColor: import.meta.env.VITE_APP_REFERRAL_CARD_TEXT_COLOR || "#ffffff",
+    buttonColor: import.meta.env.VITE_APP_REFERRAL_Referral_BUTTON_COLOR || "rgb(255, 153, 0)",
+    totalReward: import.meta.env.VITE_APP_REFERRAL_REFERRAL_TOTAL_REWARD || "0.000 BNB",
+    totalCount: import.meta.env.VITE_APP_REFERRAL_REFERRAL_TOTAL_COUNT || 0,
+    toastBgColor: import.meta.env.VITE_APP_REFERRAL_TOAST_BG_COLOR || "#959c9c",
+    toastTextColor: import.meta.env.VITE_APP_REFERRAL_TOAST_TEXT_COLOR || "#ffffff",
+    toastShadowColor: import.meta.env.VITE_APP_REFERRAL_TOAST_SHADOW_COLOR || "rgba(0, 0, 0, 0.2)",
+    messageBgColor: import.meta.env.VITE_APP_REFERRAL_MESSAGE_BG_COLOR || "rgba(255, 255, 255, 0.1)",
+    messageBorderColor: import.meta.env.VITE_APP_REFERRAL_MESSAGE_BORDER_COLOR || "rgba(255, 255, 255, 0.2)",
+  };
 
   const [showToast, setShowToast] = useState(false);
 
@@ -44,107 +35,78 @@ const Referral: React.FC = () => {
     return () => clearTimeout(timer);
   }, [showToast]);
 
+  const cards = [
+    { title: "Total Reward", value: styles.totalReward, id: "userTotalReferralBonus" },
+    { title: "Total Referral", value: styles.totalCount, id: "countdownline" },
+  ];
+
+  const buttonStyle: React.CSSProperties = {
+    backgroundColor: styles.buttonColor,
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    cursor: "pointer",
+  };
+
+  const messageStyle: React.CSSProperties = {
+    backgroundColor: styles.messageBgColor,
+    border: `1px solid ${styles.messageBorderColor}`,
+    color: styles.textColor,
+    fontWeight: "bold",
+    fontSize: "18px",
+    maxWidth: "100%",
+    wordBreak: "break-word",
+  };
+
+  const toastStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "-40px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 9999,
+    backgroundColor: styles.toastBgColor,
+    color: styles.toastTextColor,
+    padding: "8px 12px",
+    borderRadius: "5px",
+    boxShadow: `0 2px 4px ${styles.toastShadowColor}`,
+    fontWeight: "bold",
+    whiteSpace: "nowrap",
+    fontSize: "14px",
+  };
+
   return (
-    <div className="roadmap-area py-5" style={{ backgroundColor: bgColor }}>
+    <div className="roadmap-area py-5" style={{ backgroundColor: styles.bgColor }}>
       <div className="container">
         <div className="referral">
-          <h2
-            className="mb-4"
-            style={{ color: textColor, textAlign: "center" }}
-          >
+          <h2 className="mb-4" style={{ color: styles.textColor, textAlign: "center" }}>
             Referral Program
           </h2>
 
           <div className="d-flex flex-column flex-md-row align-items-center justify-content-center mb-4">
-            <div
-              className="referral-message p-3 rounded mb-3 mb-md-0 me-md-3"
-              style={{
-                backgroundColor: messageBgColor,
-                border: `1px solid ${messageBorderColor}`,
-                color: textColor,
-                fontWeight: "bold",
-                fontSize: "18px",
-                maxWidth: "100%",
-                wordBreak: "break-word",
-              }}
-            >
+            <div className="referral-message p-3 rounded mb-3 mb-md-0 me-md-3" style={messageStyle}>
               You will get your referral link after investing...
             </div>
 
             <div style={{ position: "relative" }}>
-              <button
-                id="copyButton"
-                className="btn btn-outline-primary"
-                style={{
-                  borderColor: buttonColor,
-                  color: buttonColor,
-                  transition: "all 0.3s ease",
-                  whiteSpace: "nowrap",
-                }}
-                onClick={handleCopyLink}
-                onMouseOver={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor =
-                    buttonHoverColor;
-                  (e.target as HTMLButtonElement).style.color =
-                    buttonHoverTextColor;
-                }}
-                onMouseOut={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor =
-                    "transparent";
-                  (e.target as HTMLButtonElement).style.color = buttonColor;
-                }}
-              >
+              <button id="copyButton" className="btn" style={buttonStyle} onClick={handleCopyLink}>
                 Copy Link
               </button>
 
-              {showToast && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-40px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    zIndex: 9999,
-                    backgroundColor: toastBgColor,
-                    color: toastTextColor,
-                    padding: "8px 12px",
-                    borderRadius: "5px",
-                    boxShadow: `0 2px 4px ${toastShadowColor}`,
-                    fontWeight: "bold",
-                    whiteSpace: "nowrap",
-                    fontSize: "14px",
-                  }}
-                >
-                  Referral link copied to clipboard!
-                </div>
-              )}
+              {showToast && <div style={toastStyle}>Referral link copied to clipboard!</div>}
             </div>
           </div>
 
           <div className="row">
-            <div className="col-md-6 mb-3">
-              <div
-                className="card shadow-sm p-3"
-                style={{ backgroundColor: cardBgColor, color: cardTextColor }}
-              >
-                <h3>Total Reward</h3>
-                <p id="userTotalReferralBonus" className="fs-4 fw-bold">
-                  {totalReward}
-                </p>
+            {cards.map((card, index) => (
+              <div key={index} className="col-md-6 mb-3">
+                <div className="card shadow-sm p-3" style={{ backgroundColor: styles.cardBgColor, color: styles.cardTextColor }}>
+                  <h3>{card.title}</h3>
+                  <p id={card.id} className="fs-4 fw-bold">
+                    {card.value}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="col-md-6 mb-3">
-              <div
-                className="card shadow-sm p-3"
-                style={{ backgroundColor: cardBgColor, color: cardTextColor }}
-              >
-                <h3>Total Referral</h3>
-                <p id="countdownline" className="fs-4 fw-bold">
-                  {totalCount}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

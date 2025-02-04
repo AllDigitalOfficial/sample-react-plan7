@@ -2,124 +2,111 @@ import { getCardDataReferralLink } from "../../utils/utils_Components"; // Adjus
 
 const ReferralLinkData = () => {
   // Environment Variables with fallback values
-  const bgColor = import.meta.env.VITE_APP_REFERRAL_LINK_BG_COLOR || "#192337";
-  const textColor =
-    import.meta.env.VITE_APP_REFERRAL_LINK_TEXT_COLOR || "#ffffff";
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
-  const buttonTextColor =
-    import.meta.env.VITE_APP_BUTTON_TEXT_COLOR || "#ffffff";
-  const cardBgColor = import.meta.env.VITE_APP_CARD_BG_COLOR || "#1f2833";
-  const cardBoxShadow =
-    import.meta.env.VITE_APP_CARD_BOX_SHADOW ||
-    "rgba(0, 0, 0, 0.3) 0px 4px 15px";
-  const cardBorderColor =
-    import.meta.env.VITE_APP_CARD_BORDER_COLOR || "#2D4C70";
-  const referralAmountColor =
-    import.meta.env.VITE_APP_REFERRAL_AMOUNT_COLOR || "#ffffff";
-  const userDividendsColor =
-    import.meta.env.VITE_APP_USER_DIVIDENDS_COLOR || "#ffffff";
-  const withdrawableBalanceColor =
-    import.meta.env.VITE_APP_WITHDRAWABLE_BALANCE_COLOR || "#ffffff";
+  const colors = {
+    bgColor:
+      import.meta.env.VITE_APP_REFERRAL_LINK_BG_COLOR_INCOME || "#192337",
+    textColor:
+      import.meta.env.VITE_APP_REFERRAL_LINK_TEXT_COLOR_INCOME || "#ffffff",
+    buttonColor: import.meta.env.VITE_APP_BUTTON_COLOR_INCOME || "#007bff",
+    buttonTextColor:
+      import.meta.env.VITE_APP_BUTTON_TEXT_COLOR_INCOME || "#ffffff",
+    cardBgColor: import.meta.env.VITE_APP_CARD_BG_COLOR_INCOME || "#1f2833",
+    cardBoxShadow:
+      import.meta.env.VITE_APP_CARD_BOX_SHADOW_INCOME ||
+      "rgba(0, 0, 0, 0.3) 0px 4px 15px",
+    cardBorderColor:
+      import.meta.env.VITE_APP_CARD_BORDER_COLOR_INCOME || "#2D4C70",
+    referralAmountColor:
+      import.meta.env.VITE_APP_REFERRAL_AMOUNT_COLOR_INCOME || "#ffffff",
+    userDividendsColor:
+      import.meta.env.VITE_APP_USER_DIVIDENDS_COLOR_INCOME || "#ffffff",
+    withdrawableBalanceColor:
+      import.meta.env.VITE_APP_WITHDRAWABLE_BALANCE_COLOR_INCOME || "#ffffff",
+  };
 
   // Dynamic Values from Env
-  const referralAmount = import.meta.env.VITE_APP_REFERRAL_AMOUNT || "1.5";
-  const userDividends = import.meta.env.VITE_APP_USER_DIVIDENDS || "0.8";
-  const withdrawableBalance =
-    import.meta.env.VITE_APP_WITHDRAWABLE_BALANCE || "2.0";
-  const userDeposit = import.meta.env.VITE_APP_USER_DEPOSIT || "5.0";
-  const userReturns = import.meta.env.VITE_APP_USER_RETURNS || "1.2";
-  const totalWithdrawn = import.meta.env.VITE_APP_TOTAL_WITHDRAWNN || "1.000";
-  const percentRate = import.meta.env.VITE_APP_PERCENT_RATE || "12%";
+  const amounts = {
+    referralAmount: import.meta.env.VITE_APP_REFERRAL_AMOUNT_INCOME || "1.5",
+    userDividends: import.meta.env.VITE_APP_USER_DIVIDENDS_INCOME || "0.8",
+    withdrawableBalance:
+      import.meta.env.VITE_APP_WITHDRAWABLE_BALANCE_INCOME || "2.0",
+    userDeposit: import.meta.env.VITE_APP_USER_DEPOSIT_INCOME || "5.0",
+    userReturns: import.meta.env.VITE_APP_USER_RETURNS_INCOME || "1.2",
+    totalWithdrawn: import.meta.env.VITE_APP_TOTAL_WITHDRAWNN_INCOME || "1.000",
+    percentRate: import.meta.env.VITE_APP_PERCENT_RATE_INCOME || "12%",
+  };
 
   // Creating data object for the utility function
   const referralLinkData = {
-    userDeposit,
-    userReturns,
-    totalWithdrawn,
-    percentRate,
+    userDeposit: amounts.userDeposit,
+    userReturns: amounts.userReturns,
+    totalWithdrawn: amounts.totalWithdrawn,
+    percentRate: amounts.percentRate,
   };
 
   // Get the data for the four specific cards using the utility function
   const cardData = getCardDataReferralLink(referralLinkData);
 
+  // Arrays of objects to map over for dynamic rendering
+  const boxes = [
+    {
+      title: "Referral Amount Available",
+      value: amounts.referralAmount,
+      color: colors.referralAmountColor,
+    },
+    {
+      title: "User Dividends Available",
+      value: amounts.userDividends,
+      color: colors.userDividendsColor,
+    },
+    {
+      title: "Total Withdrawable Balance",
+      value: amounts.withdrawableBalance,
+      color: colors.withdrawableBalanceColor,
+      button: true,
+    },
+  ];
+
   return (
-    <div className="expart-team-area py-5" style={{ backgroundColor: bgColor }}>
+    <div
+      className="expart-team-area py-5"
+      style={{ backgroundColor: colors.bgColor }}
+    >
       <div className="container">
         <div className="row">
           {/* First Section: Three Boxes */}
           <div className="col-lg-12 mb-4">
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              <div className="col">
-                <div
-                  className="card shadow-lg p-4 d-flex flex-column"
-                  style={{
-                    backgroundColor: cardBgColor,
-                    color: textColor,
-                    borderRadius: "15px",
-                    boxShadow: cardBoxShadow,
-                  }}
-                >
-                  <h3>Referral Amount Available</h3>
-                  <p
-                    className="fs-4 fw-bold"
-                    style={{ color: referralAmountColor }}
-                  >
-                    {referralAmount}{" "}
-                    <span style={{ color: textColor }}>BNB</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="col">
-                <div
-                  className="card shadow-lg p-4 d-flex flex-column"
-                  style={{
-                    backgroundColor: cardBgColor,
-                    color: textColor,
-                    borderRadius: "15px",
-                    boxShadow: cardBoxShadow,
-                  }}
-                >
-                  <h3>User Dividends Available</h3>
-                  <p
-                    className="fs-4 fw-bold"
-                    style={{ color: userDividendsColor }}
-                  >
-                    {userDividends}{" "}
-                    <span style={{ color: textColor }}>BNB</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="col">
-                <div
-                  className="card shadow-lg p-4 d-flex flex-column"
-                  style={{
-                    backgroundColor: cardBgColor,
-                    color: textColor,
-                    borderRadius: "15px",
-                    boxShadow: cardBoxShadow,
-                  }}
-                >
-                  <h3>Total Withdrawable Balance</h3>
-                  <p
-                    className="fs-4 fw-bold"
-                    style={{ color: withdrawableBalanceColor }}
-                  >
-                    {withdrawableBalance}{" "}
-                    <span style={{ color: textColor }}>BNB</span>
-                  </p>
-                  <button
-                    className="btn mt-auto"
+              {boxes.map((box, index) => (
+                <div key={index} className="col">
+                  <div
+                    className="card shadow-lg p-4 d-flex flex-column"
                     style={{
-                      backgroundColor: buttonColor,
-                      color: buttonTextColor,
+                      backgroundColor: colors.cardBgColor,
+                      color: colors.textColor,
+                      borderRadius: "15px",
+                      boxShadow: colors.cardBoxShadow,
                     }}
                   >
-                    Withdrawal
-                  </button>
+                    <h3>{box.title}</h3>
+                    <p className="fs-4 fw-bold" style={{ color: box.color }}>
+                      {box.value}{" "}
+                      <span style={{ color: colors.textColor }}>BNB</span>
+                    </p>
+                    {box.button && (
+                      <button
+                        className="btn mt-auto"
+                        style={{
+                          backgroundColor: colors.buttonColor,
+                          color: colors.buttonTextColor,
+                        }}
+                      >
+                        Withdrawal
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -131,15 +118,16 @@ const ReferralLinkData = () => {
                   <div
                     className="card shadow-lg p-4"
                     style={{
-                      backgroundColor: cardBgColor,
-                      color: textColor,
+                      backgroundColor: colors.cardBgColor,
+                      color: colors.textColor,
                       borderRadius: "12px",
-                      border: `1px solid ${cardBorderColor}`,
+                      border: `1px solid ${colors.cardBorderColor}`,
                     }}
                   >
                     <h4 style={{ color: card.color }}>{card.title}</h4>
                     <p className="fs-4 fw-bold" style={{ color: card.color }}>
-                      {card.value} <span style={{ color: textColor }}>BNB</span>
+                      {card.value}{" "}
+                      <span style={{ color: colors.textColor }}>BNB</span>
                     </p>
                   </div>
                 </div>

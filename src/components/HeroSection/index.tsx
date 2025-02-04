@@ -2,61 +2,100 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 const HeroSection: React.FC = () => {
-  // Retrieve colors and values from environment variables
+  // Retrieve values from environment variables
   const heroBgColor = import.meta.env.VITE_APP_HERO_BG_COLOR || "#292d36";
-  const heroTextColor = import.meta.env.VITE_APP_HERO_TEXT_COLOR || "#ffffff";
-  const buttonColor = import.meta.env.VITE_APP_BUTTON_COLOR || "#007bff";
+  const heroTextColor =
+    import.meta.env.VITE_APP_HERO_TEXT_COLOR || "rgb(255, 255, 255)";
+  const buttonColor = import.meta.env.VITE_APP_HERO_BUTTON_COLOR || "#007bff";
   const buttonOutlineColor =
-    import.meta.env.VITE_APP_BUTTON_OUTLINE_COLOR || "#007bff";
+    import.meta.env.VITE_APP_HERO_BUTTON_OUTLINE_COLOR || "#007bff";
   const presentationLink =
-    import.meta.env.VITE_APP_PRESENTATION_LINK || "BnbOath PPT.pdf";
+    import.meta.env.VITE_APP_HERO_PRESENTATION_LINK || "BnbOath PPT.pdf";
   const smartContractLink =
-    import.meta.env.VITE_APP_SMART_CONTRACT || "#smart-contract";
+    import.meta.env.VITE_APP_HERO_SMART_CONTRACT || "#smart-contract";
   const rightSectionBgColor =
-    import.meta.env.VITE_APP_RIGHT_SECTION_BG_COLOR || "#212529";
-  const titleColor = import.meta.env.VITE_APP_TITLE_COLOR || "#ffd700";
-  const balanceColor = import.meta.env.VITE_APP_BALANCE_COLOR || "#28a745";
+    import.meta.env.VITE_APP_HERO_RIGHT_SECTION_BG_COLOR || "#212529";
+  const titleColor = import.meta.env.VITE_APP_HERO_TITLE_COLOR || "#ffd700";
+  const balanceColor = import.meta.env.VITE_APP_HERO_BALANCE_COLOR || "#28a745";
   const profitTextColor =
-    import.meta.env.VITE_APP_PROFIT_TEXT_COLOR || "#ffffff";
+    import.meta.env.VITE_APP_HERO_PROFIT_TEXT_COLOR || "#ffffff";
   const profitSectionBgColor =
-    import.meta.env.VITE_APP_PROFIT_SECTION_BG_COLOR || "#292d36";
+    import.meta.env.VITE_APP_HERO_PROFIT_SECTION_BG_COLOR || "#292d36";
 
   // Hero section text and heading color
   const heroHeading =
     import.meta.env.VITE_APP_HERO_HEADING ||
     "Fuel your crypto ambitions with BNB.";
   const heroHeadingColor =
-    import.meta.env.VITE_APP_HERO_HEADING_COLOR || "#ffd700"; // Default Gold color
+    import.meta.env.VITE_APP_HERO_HEADING_COLOR || "rgb(255, 253, 243)"; // Gold color
 
   // Profit section values and their colors
   const basicInterestRate =
-    import.meta.env.VITE_APP_BASIC_INTEREST_RATE || "4% every 24 hrs";
+    import.meta.env.VITE_APP_HERO_BASIC_INTEREST_RATE || "4% every 24 hrs";
   const holdBonus =
-    import.meta.env.VITE_APP_HOLD_BONUS ||
+    import.meta.env.VITE_APP_HERO_HOLD_BONUS ||
     "+0.1% for every 24 hrs without withdrawal";
   const contractAmountBonus =
-    import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS ||
+    import.meta.env.VITE_APP_HERO_CONTRACT_AMOUNT_BONUS ||
     "+0.1% for every 500 BNB on platform address balance";
 
   const basicInterestRateColor =
-    import.meta.env.VITE_APP_BASIC_INTEREST_RATE_COLOR || "#ffffff";
-  const holdBonusColor = import.meta.env.VITE_APP_HOLD_BONUS_COLOR || "#ffffff";
+    import.meta.env.VITE_APP_HERO_BASIC_INTEREST_RATE_COLOR ||
+    "rgb(255, 255, 255)";
+  const holdBonusColor =
+    import.meta.env.VITE_APP_HERO_HOLD_BONUS_COLOR || "rgb(255, 255, 255)";
   const contractAmountBonusColor =
-    import.meta.env.VITE_APP_CONTRACT_AMOUNT_BONUS_COLOR || "#ffffff";
+    import.meta.env.VITE_APP_HERO_CONTRACT_AMOUNT_BONUS_COLOR ||
+    "rgb(255, 255, 255)";
 
   const contractBalance =
-    import.meta.env.VITE_APP_CONTRACT_BALANCE || "0.000 BNB";
+    import.meta.env.VITE_APP_HERO_CONTRACT_BALANCE || "0.000 BNB";
+
+  // Define common styles for buttons and sections
+  const buttonStyles = {
+    default: {
+      backgroundColor: buttonColor,
+      color: heroTextColor, // Use heroTextColor here instead of hardcoding
+      border: "none",
+    },
+    outline: {
+      color: buttonOutlineColor,
+      border: `2px solid ${buttonOutlineColor}`,
+      background: "transparent",
+    },
+  };
+
+  const sectionStyles = {
+    leftSection: {
+      backgroundColor: profitSectionBgColor,
+      color: profitTextColor,
+      border: "none",
+      boxShadow: "none",
+    },
+    rightSection: {
+      backgroundColor: rightSectionBgColor,
+      borderRadius: "15px",
+      padding: "20px",
+      color: heroTextColor,
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
+      maxWidth: "500px",
+      width: "100%",
+    },
+    heroContainer: {
+      backgroundColor: heroBgColor,
+      color: heroTextColor,
+      position: "relative" as "relative", // Explicitly type-casting as valid CSS position
+      paddingTop: "100px", // To prevent navbar overlap on mobile
+    },
+    heroHeading: {
+      color: heroHeadingColor,
+      marginTop: "-20px",
+      fontSize: "2.5rem", // Adjust size as needed
+    },
+  };
 
   return (
-    <Container
-      fluid
-      style={{
-        backgroundColor: heroBgColor,
-        color: heroTextColor,
-        position: "relative",
-        paddingTop: "100px",
-      }}
-    >
+    <Container fluid style={sectionStyles.heroContainer}>
       <div
         className="row align-items-center g-4"
         style={{ minHeight: "600px" }}
@@ -65,22 +104,10 @@ const HeroSection: React.FC = () => {
         <div className="col-lg-6 col-md-6 d-flex">
           <div
             className="w-100 p-4 rounded d-flex flex-column"
-            style={{
-              backgroundColor: profitSectionBgColor,
-              color: profitTextColor,
-              border: "none",
-              boxShadow: "none",
-            }}
+            style={sectionStyles.leftSection}
           >
-            <h2
-              className="fw-bold mb-4"
-              style={{
-                color: heroHeadingColor, // Use the color for the heading from .env
-                marginTop: "-20px",
-                fontSize: "2.5rem",
-              }}
-            >
-              {heroHeading} {/* Hero heading text */}
+            <h2 className="fw-bold mb-4" style={sectionStyles.heroHeading}>
+              {heroHeading}
             </h2>
             <div>
               <p className="mb-0">
@@ -113,47 +140,36 @@ const HeroSection: React.FC = () => {
               </p>
             </div>
             <div className="d-flex flex-wrap gap-3 mt-4 justify-content-start">
-              <a
-                href={presentationLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn hero-button"
-                style={{
-                  backgroundColor: buttonColor,
-                  color: "#fff",
-                  border: "none",
-                }}
-              >
-                Presentation
-              </a>
-              <a
-                href={smartContractLink}
-                className="btn hero-button"
-                style={{
-                  color: buttonOutlineColor,
-                  border: `2px solid ${buttonOutlineColor}`,
-                  background: "transparent",
-                }}
-              >
-                Smart Contract
-              </a>
+              {[
+                {
+                  href: presentationLink,
+                  style: buttonStyles.default,
+                  text: "Presentation",
+                },
+                {
+                  href: smartContractLink,
+                  style: buttonStyles.outline,
+                  text: "Smart Contract",
+                },
+              ].map((button, index) => (
+                <a
+                  key={index}
+                  href={button.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn hero-button"
+                  style={button.style}
+                >
+                  {button.text}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Right Section: Contract Balance */}
         <div className="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
-          <div
-            style={{
-              backgroundColor: rightSectionBgColor,
-              borderRadius: "15px",
-              padding: "20px",
-              color: heroTextColor,
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
-              maxWidth: "500px",
-              width: "100%",
-            }}
-          >
+          <div style={sectionStyles.rightSection}>
             <h3
               style={{
                 color: titleColor,
