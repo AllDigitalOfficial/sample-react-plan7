@@ -67,6 +67,26 @@ const ReferralLinkData = () => {
     },
   ];
 
+  // Common styles for the cards
+  const baseCardStyle = {
+    backgroundColor: colors.cardBgColor,
+    color: colors.textColor,
+    borderRadius: "12px",
+    border: `1px solid ${colors.cardBorderColor}`,
+  };
+
+  const baseButtonStyle = {
+    backgroundColor: colors.buttonColor,
+    color: colors.buttonTextColor,
+  };
+
+  const baseCardShadowStyle = {
+    backgroundColor: colors.cardBgColor,
+    color: colors.textColor,
+    borderRadius: "15px",
+    boxShadow: colors.cardBoxShadow,
+  };
+
   return (
     <div
       className="expart-team-area py-5"
@@ -81,12 +101,7 @@ const ReferralLinkData = () => {
                 <div key={index} className="col">
                   <div
                     className="card shadow-lg p-4 d-flex flex-column"
-                    style={{
-                      backgroundColor: colors.cardBgColor,
-                      color: colors.textColor,
-                      borderRadius: "15px",
-                      boxShadow: colors.cardBoxShadow,
-                    }}
+                    style={baseCardShadowStyle} // Using the shared base card style
                   >
                     <h3>{box.title}</h3>
                     <p className="fs-4 fw-bold" style={{ color: box.color }}>
@@ -96,10 +111,7 @@ const ReferralLinkData = () => {
                     {box.button && (
                       <button
                         className="btn mt-auto"
-                        style={{
-                          backgroundColor: colors.buttonColor,
-                          color: colors.buttonTextColor,
-                        }}
+                        style={baseButtonStyle} // Using the shared button style
                       >
                         Withdrawal
                       </button>
@@ -117,12 +129,7 @@ const ReferralLinkData = () => {
                 <div key={card.id} className="col">
                   <div
                     className="card shadow-lg p-4"
-                    style={{
-                      backgroundColor: colors.cardBgColor,
-                      color: colors.textColor,
-                      borderRadius: "12px",
-                      border: `1px solid ${colors.cardBorderColor}`,
-                    }}
+                    style={baseCardStyle} // Using the shared base card style
                   >
                     <h4 style={{ color: card.color }}>{card.title}</h4>
                     <p className="fs-4 fw-bold" style={{ color: card.color }}>
